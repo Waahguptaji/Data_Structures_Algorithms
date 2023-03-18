@@ -64,7 +64,7 @@ public class CircularDoublyLLUSe {
     public static void print(DoublyNode<Integer> head){
         DoublyNode<Integer> current = head;
         while (current != head.prev){
-            System.out.print(current.data+ " ");
+            System.out.print(current.data+ "  ");
             current = current.next;
         }
         System.out.println();
