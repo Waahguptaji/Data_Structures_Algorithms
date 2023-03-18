@@ -50,7 +50,7 @@ public class EvenAfterOddLL {
 //        Node<Integer> oddHead = null, oddTail = null;
 //        Node<Integer> evenHead = null, evenTail = null;
 //        //here we are taking input from main linked list to new created two seperate linked list for odd and even
-//        while (current != null){
+//        while (current.next != null){
 //            if (current.data % 2 == 0 ){
 //                if (evenHead == null) {
 //                    evenHead = current;
