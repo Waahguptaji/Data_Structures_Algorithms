@@ -23,7 +23,7 @@ package LinkedList2Assignment;
 
 import java.util.Scanner;
 
-public class SwapTwoNodes {
+public class SwapNodesAtPosition {
 
     public static Node<Integer> takeInput()// here we are returning in node<Integer> type because we want to return the value of head
     {
@@ -64,7 +64,7 @@ public class SwapTwoNodes {
         Node<Integer> temp;
         temp = nodeY.next;
         nodeY.next = nodeX.next;
-        nodeY.next = temp;
+        nodeX.next = temp;
 
         if (prevX == null) {
             nodeY = head;

@@ -1,5 +1,7 @@
 package LinkedList2;
 
+import LinkedList2Assignment.Node;
+
 import java.util.Scanner;
 
 public class CircularDoublyLLUSe {
