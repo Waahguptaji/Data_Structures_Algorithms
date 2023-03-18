@@ -45,6 +45,10 @@ public class kReverse {
         return head;
     }
     public static Node<Integer> kReverses(Node<Integer> head, int k){
+        if(head==null || head.next == null || k == 0) {
+            return head;
+        }
+
         Node<Integer> curr = head, temp = null, prev = null;
 
         int count = 0;
