@@ -1,10 +1,10 @@
 package Stack;
 
-public class StackUsingArray {//if no capacity is given then default is 10
+public class StackUsingArray {
     private int data[];//we are keeping this private because we don't want other to change
     private int top;// is the index of topmost element of stack
 
-    public StackUsingArray(){
+    public StackUsingArray(){//if no capacity is given then default is 10
         data = new int[10];
         top = -1;// because as of now no top element is present, array is empty
     }
