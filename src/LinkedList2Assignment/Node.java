@@ -1,7 +1,7 @@
 package LinkedList2Assignment;
 
  public class Node<T> {
-     T data;
+     public T data;
 
      Node<T> next;
      public Node(T data) {

@@ -2,13 +2,10 @@ package StackandQueues;
 
 public class QueueUsecase {
     public static void main(String[] args) {
-        QueueUsingArray queue = new QueueUsingArray(3);
+//        QueueUsingArray queue = new QueueUsingArray(3);
+        QueueUsingLL queue = new QueueUsingLL<>();
         for (int i = 1; i <= 5 ; i++) {
-            try {
-                queue.enqueue(i);
-            } catch (QueueFullException e) {
-                //No need to came here
-            }
+            queue.enqueue(i);
         }
 
         while (!queue.isEmpty()){
