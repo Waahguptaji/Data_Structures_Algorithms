@@ -1,4 +1,4 @@
-package Stack;
+package StackandQueues;
 
 public class StackUsingLL<T> {
      private Node<T> head;

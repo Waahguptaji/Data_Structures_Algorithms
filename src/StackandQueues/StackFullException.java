@@ -1,4 +1,4 @@
-package Stack;
+package StackandQueues;
 
 public class StackFullException extends Exception{
 }

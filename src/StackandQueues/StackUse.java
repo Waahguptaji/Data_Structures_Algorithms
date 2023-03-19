@@ -1,4 +1,4 @@
-package Stack;
+package StackandQueues;
 
 public class StackUse {
     public static void main(String[] args) throws StackFullException {

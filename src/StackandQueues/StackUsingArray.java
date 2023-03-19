@@ -1,4 +1,4 @@
-package Stack;
+package StackandQueues;
 
 public class StackUsingArray {
     private int data[];//we are keeping this private because we don't want other to change
