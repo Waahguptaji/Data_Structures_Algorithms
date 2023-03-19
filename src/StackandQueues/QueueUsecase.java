@@ -2,7 +2,7 @@ package StackandQueues;
 
 public class QueueUsecase {
     public static void main(String[] args) {
-        QueueUsingArray queue = new QueueUsingArray();
+        QueueUsingArray queue = new QueueUsingArray(3);
         for (int i = 1; i <= 5 ; i++) {
             try {
                 queue.enqueue(i);

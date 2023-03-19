@@ -37,7 +37,8 @@ public class QueueUsingArray {
 
     void enqueue(int element) throws QueueFullException {
         if (size == data.length) {
-            throw new QueueFullException();
+//            throw new QueueFullException();
+            doubleCapacity();
         }
         
         if (size == 0) {// when we starting we will be t first element, hence set that element as front
@@ -51,6 +52,23 @@ public class QueueUsingArray {
             rear = 0;//  here we circular it, rotate the rear to 0th position
         }
         data[rear] = element;
+    }
+
+    void doubleCapacity(){// here we cannot just do the copy thing like we do in stack because it will mess
+        //here we will arrange the new array by first putting the element that came first and so on
+        int temp[] = data;
+        data = new int[2* temp.length];
+        int index = 0;
+        for (int i = front; i < temp.length ; i++) {
+            data[index] = temp[i];
+            index++;
+        }
+        for (int i = 0; i <= front - 1 ; i++) {
+            data[index] = temp[i];
+            index++;
+        }
+        front = 0;
+        rear = temp.length - 1;
     }
 
     int dequeue() throws QueueEmptyException {
