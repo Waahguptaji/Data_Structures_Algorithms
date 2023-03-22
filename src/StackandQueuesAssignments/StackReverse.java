@@ -18,7 +18,7 @@ Problem Description: ####Reverse a given Stack with the help of another empty st
 package StackandQueuesAssignments;
 
 // Best Method Using Recursion
-public class ReverseStack {
+public class StackReverse {
 
     // function to insert top element at the bottom of stack
     public static void insertAtBottom(StackUsingLL<Integer> stack, int element) throws StackEmptyException {

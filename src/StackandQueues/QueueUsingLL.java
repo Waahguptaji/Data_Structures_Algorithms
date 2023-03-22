@@ -44,7 +44,7 @@ public class QueueUsingLL<T> {
         }
         T temp = front.data;
         front = front.next;
-        if (size == 1) {// if the size ek reh jaayega toh front to last element ko remove karke null ko point kar lega
+        if (size == 1) {// if the size ek reh jaayega toh front toh last element ko remove karke null ko point kar lega
                        // but rear humhara last waale element ko hi point karta rahega esliye humko usko null banana hoga
             rear = null;
         }
