@@ -1,30 +1,30 @@
 /*
-Coding Problem Name: Height of generic Tree
+* Coding Problem Name: Post-order Traversal
 Problem Level: EASY
-Problem Description: ####Given a generic tree, find and return the height of given tree.
+Problem Description: ####Given a generic tree, print the post-order traversal of given tree.
+####Post-order traversal is : Children and then Root
 
 #####Input format :
     Elements in level order form separated by space (as per done in class). Order is -
     Root_data, n (No_Of_Child_Of_Root), n children, and so on for every element
 
 #####Output Format :
-    Height
+    Post-order traversal, elements separated by space
 
 
 
  #####Sample Input :
-    10 3 20 30 40 2 40 50 0 0 0 0
+    10 3 20 30 40 2 400 50 0 0 0 0
 
 #####Sample Output :
-    3*/
+    400 50 20 30 40 10*/
 package Trees;
-
 
 import java.util.Scanner;
 
-public class HeightOfTree {
+public class TraversalPostOrder {
     //    Taking Input Level Wise using Queues
-    public static TreeNode<Integer> takeInputLevelWise() {
+    public static TreeNode<Integer> takeInputLevelWise() throws QueueEmptyException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the root data:");
         int rootData = sc.nextInt();
@@ -32,7 +32,6 @@ public class HeightOfTree {
         TreeNode<Integer> root = new TreeNode<>(rootData);
         pendingNodes.enqueue(root);
         while (!pendingNodes.isEmpty()) {
-            try {
                 TreeNode<Integer> frontNode = pendingNodes.dequeue();
                 System.out.println("Enter the number of child of " + frontNode.data);
                 int numChildren = sc.nextInt();
@@ -43,9 +42,6 @@ public class HeightOfTree {
                     frontNode.children.add(childNode);//connecting the childNode and the frontNode
                     pendingNodes.enqueue(childNode);//here we add the childNode because maybe it contains children further
                 }
-            } catch (QueueEmptyException e) {
-                //it will not come here
-            }
         }
         return root;
     }
@@ -69,24 +65,22 @@ public class HeightOfTree {
 
     }
 
-    //    Height of a Tree
-    public static int heightOfTree(TreeNode<Integer> root) {
-        if (root == null) { //not a base case
-            return 0;//we are defining here that height of a null tree is zero
+
+    public static void postOrderTraversal(TreeNode<Integer> root) {
+        if (root == null) {//Edge Case not a base case
+            return;
         }
-        int maxHeight = 1;
+
         for (int i = 0; i < root.children.size(); i++) {
-            int childHeight = 1 + heightOfTree(root.children.get(i));
-            if (maxHeight < childHeight) {
-                maxHeight = childHeight;
-            }
+            postOrderTraversal(root.children.get(i));
         }
-        return maxHeight;
+        System.out.print(root.data + " ");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws QueueEmptyException {
         TreeNode<Integer> root = takeInputLevelWise();
-        System.out.println(heightOfTree(root));
+        printLevelWise(root);
+        postOrderTraversal(root);
+        System.out.println();
     }
-
 }
