@@ -1,26 +1,25 @@
-/*/*
-Given a tree and an integer x, find and return number of Nodes which are greater than x.
-Input format :
-Single Line : First Integer denotes x and rest of the elements in level order form separated by space. Order is -
-Root_data, n (No_Of_Child_Of_Root), n children, and so on for every element
-Output Format :
-Count of nodes greater than x
-Sample Input 1 :
-35 10 3 20 30 40 2 40 50 0 0 0 0
-Sample Output 1 :
-3
-Sample Input 2 :
-10 10 3 20 30 40 2 40 50 0 0 0 0
-Sample Output 2:
-5
-*/
+/*
+Assignment Coding Problem Name: Node having sum of children and node is max
+Problem Level: MEDIUM
+Problem Description: ####Given a tree, find and return the node for which sum of data of all children and the node itself is maximum. In the sum, data of node itself and data of immediate children is to be taken.
 
-package Trees;
+`Input format : `
+
+`Line 1 : Elements in level order form separated by space (as per done in class). Order is - `
+
+`Root_data, n (No_Of_Child_Of_Root), n children, and so on for every element `
+
+`Output format : Node with maximum sum.`
+ #####Sample Input 1 :
+    5 3 1 2 3 1 15 2 4 5 1 6 0 0 0 0
+
+#####Sample Output 1 :
+    1 */
+package TreesAssignments;
 
 import java.util.Scanner;
 
-public class GreaterThanX {
-
+public class SumOfChildandNodeMax {
     //    Taking Input Level Wise using Queues
     public static TreeNode<Integer> takeInputLevelWise() {
         Scanner sc = new Scanner(System.in);
@@ -67,24 +66,28 @@ public class GreaterThanX {
 
     }
 
-    public static int greaterThanX(TreeNode<Integer> root, int x){
-        if(root == null){//EDGE CASE
+    public static int maxSumOfNodeChild(TreeNode<Integer> root){
+        if (root == null) {
             return 0;
         }
-        int count = 0;
-        if (root.data > x) {//Base CASE
-            count++;
-        }
 
-        for (int i = 0; i <root.children.size() ; i++) {
-           count = count + greaterThanX(root.children.get(i), x);
+        int maxSum = 0;
+        int childNodeSum = 0;
+        if (root.children.size() == 0) {
+            return childNodeSum;
         }
-        return count;
+        for (int i = 0; i <root.children.size() ; i++) {
+             childNodeSum = childNodeSum + maxSumOfNodeChild(root.children.get(i));
+            if (maxSum < childNodeSum) {
+                maxSum = childNodeSum;
+            }
+        }
+        return maxSum;
     }
 
     public static void main(String[] args) throws QueueEmptyException {
         TreeNode<Integer> root = takeInputLevelWise();
-        printLevelWise(root);
-        System.out.println(greaterThanX(root, 10));
+        System.out.println(maxSumOfNodeChild(root));
+
     }
 }
