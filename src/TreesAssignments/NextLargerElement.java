@@ -1,38 +1,9 @@
-/*
- ssignment Coding Problem Name: Structurally identical
-Problem Level: MEDIUM
-Problem Description: ####Given two Generic trees, return true if they are structurally identical i.e. they are made of nodes with the same values arranged in the same way.
-
-`Input format : `
-
-`Line 1 : Tree 1 elements in level order form separated by space (as per done in class). Order is - `
-
-`Root_data, n (No_Of_Child_Of_Root), n children, and so on for every element `
-
-`Line 2 : Tree 2 elements in level order form separated by space (as per done in class). Order is - `
-
-`Root_data, n (No_Of_Child_Of_Root), n children, and so on for every element `
-
-`Output format : true or false`
- #####Sample Input 1 :
-    10 3 20 30 40 2 40 50 0 0 0 0
-    10 3 20 30 40 2 40 50 0 0 0 0
-
-#####Sample Output 1 :
-    true
-
-#####Sample Input 2 :
-    10 3 20 30 40 2 40 50 0 0 0 0
-    10 3 2 30 40 2 40 50 0 0 0 0
-
-#####Sample Output 2:
-    false*/
-
 package TreesAssignments;
 
 import java.util.Scanner;
 
-public class StructurallyIdentical {
+public class NextLargerElement {
+
     //    Taking Input Level Wise using Queues
     public static TreeNode<Integer> takeInputLevelWise() {
         Scanner sc = new Scanner(System.in);
@@ -79,34 +50,34 @@ public class StructurallyIdentical {
 
     }
 
-    public static Boolean identicalOrNot(TreeNode<Integer> root1, TreeNode<Integer> root2){
-        if (root1 == null && root2 == null) {
-            return true;
+    public static void nextLargerElement(TreeNode<Integer> root, int n, TreeNode<Integer> nextLargest) {
+        if (root == null) {
+            return;
         }
-        if (root1 == null || root2 == null) {
-            return false;
-        }
-
-
-        if (!root1.data.equals(root2.data)) {//BAse CAse
-            return false;
-        }
-        if(root1.children.size() != root2.children.size()){
-            return false;
-        }
-
-        for (int i = 0; i < root1.children.size() ; i++) {
-            if (!identicalOrNot(root1.children.get(i), root2.children.get(i))) {
-                return  false;
+        // if root is less than nextLargest but
+        // greater than x, update nextLargest
+        if (root.data > n) {
+            if (nextLargest == null || nextLargest.data > root.data) {
+                nextLargest = root;
             }
         }
-        return true;
+        for (int i = 0; i <root.children.size(); i++) {
+            nextLargerElement(root.children.get(i), n, nextLargest);
+        }
+        return;
+    }
+
+    public static TreeNode<Integer> nextLargerElement(TreeNode<Integer> root, int n)
+    {
+        TreeNode<Integer> nextLargest = null;
+        // calling helper function
+        nextLargerElement(root,n, nextLargest);
+        return nextLargest;
     }
 
     public static void main(String[] args) throws QueueEmptyException {
-        TreeNode<Integer> root1 = takeInputLevelWise();
-        TreeNode<Integer> root2 = takeInputLevelWise();
-
-        System.out.println(identicalOrNot(root1, root2));
+        TreeNode<Integer> root = takeInputLevelWise();
+        printLevelWise(root);
+        System.out.println(nextLargerElement(root, 18));
     }
 }

@@ -1,38 +1,28 @@
 /*
- ssignment Coding Problem Name: Structurally identical
+* Assignment Coding Problem
+Problem Name: Replace node with depth
 Problem Level: MEDIUM
-Problem Description: ####Given two Generic trees, return true if they are structurally identical i.e. they are made of nodes with the same values arranged in the same way.
+Problem Description: ####In a given Generic Tree, replace each node with its depth value. You need to just update the data of each node, no need to return or print anything.
 
 `Input format : `
 
-`Line 1 : Tree 1 elements in level order form separated by space (as per done in class). Order is - `
+`Line 1 : Elements in level order form separated by space (as per done in class). Order is - `
 
 `Root_data, n (No_Of_Child_Of_Root), n children, and so on for every element `
 
-`Line 2 : Tree 2 elements in level order form separated by space (as per done in class). Order is - `
-
-`Root_data, n (No_Of_Child_Of_Root), n children, and so on for every element `
-
-`Output format : true or false`
  #####Sample Input 1 :
     10 3 20 30 40 2 40 50 0 0 0 0
-    10 3 20 30 40 2 40 50 0 0 0 0
 
-#####Sample Output 1 :
-    true
-
-#####Sample Input 2 :
-    10 3 20 30 40 2 40 50 0 0 0 0
-    10 3 2 30 40 2 40 50 0 0 0 0
-
-#####Sample Output 2:
-    false*/
-
+#####Sample Output 1 : (Level wise, each level in new line)
+    0
+    1 1 1
+    2 2*/
 package TreesAssignments;
 
 import java.util.Scanner;
 
-public class StructurallyIdentical {
+public class ReplaceNodewithDepth {
+
     //    Taking Input Level Wise using Queues
     public static TreeNode<Integer> takeInputLevelWise() {
         Scanner sc = new Scanner(System.in);
@@ -79,34 +69,25 @@ public class StructurallyIdentical {
 
     }
 
-    public static Boolean identicalOrNot(TreeNode<Integer> root1, TreeNode<Integer> root2){
-        if (root1 == null && root2 == null) {
-            return true;
+    public static void replaceNodewDepth(TreeNode<Integer> root, int depth){
+        root.data = depth;
+        for (int i = 0; i <root.children.size() ; i++) {
+            replaceNodewDepth(root.children.get(i), depth + 1);
         }
-        if (root1 == null || root2 == null) {
-            return false;
-        }
+    }
 
-
-        if (!root1.data.equals(root2.data)) {//BAse CAse
-            return false;
+    public static void replaceNodewDepth(TreeNode<Integer> root){//Helper Function
+        if (root == null) {
+           return;
         }
-        if(root1.children.size() != root2.children.size()){
-            return false;
-        }
-
-        for (int i = 0; i < root1.children.size() ; i++) {
-            if (!identicalOrNot(root1.children.get(i), root2.children.get(i))) {
-                return  false;
-            }
-        }
-        return true;
+        replaceNodewDepth(root, 0);
     }
 
     public static void main(String[] args) throws QueueEmptyException {
-        TreeNode<Integer> root1 = takeInputLevelWise();
-        TreeNode<Integer> root2 = takeInputLevelWise();
-
-        System.out.println(identicalOrNot(root1, root2));
+        TreeNode<Integer> root = takeInputLevelWise();
+        printLevelWise(root);
+        replaceNodewDepth(root);
+        System.out.println("After:");
+        printLevelWise(root);
     }
 }
