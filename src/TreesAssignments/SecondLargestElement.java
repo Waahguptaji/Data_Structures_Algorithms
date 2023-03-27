@@ -1,43 +1,8 @@
-/*
-* Assignment Coding Problem
-Problem Name: Next larger element
-Problem Level: MEDIUM
-Problem Description: ####Given a generic tree and an integer n. Find and return the node with next larger element in the Tree i.e. find a node with value just greater than n.
-#####Return NULL if no node is present with value greater than n.
-
-`Input format : `
-
-`Line 1 : Integer n`
-
-`Line 2 : Elements in level order form separated by space (as per done in class). Order is - `
-
-`Root_data, n (No_Of_Child_Of_Root), n children, and so on for every element `
-
-`Output format : Node with value just greater than n.`
- #####Sample Input 1 :
-    18
-    10 3 20 30 40 2 40 50 0 0 0 0
-
-#####Sample Output 1 :
-    20
-
-#####Sample Input 2 :
-    21
-    10 3 20 30 40 2 40 50 0 0 0 0
-
-#####Sample Output 2:
-    30*/
-
 package TreesAssignments;
 
 import java.util.Scanner;
 
-
-/*The idea is maintaining a node pointer res, which will contain the final resultant node.
-        Traverse the tree and check if root data is greater than x. If so, then compare the root data with res data.
-        If root data is greater than n and less than res data update res.*/
-public class NextLargerElement {
-
+public class SecondLargestElement {
     //    Taking Input Level Wise using Queues
     public static TreeNode<Integer> takeInputLevelWise() {
         Scanner sc = new Scanner(System.in);
@@ -84,38 +49,42 @@ public class NextLargerElement {
 
     }
 
-    static TreeNode<Integer> nextLarger;
+    static TreeNode<Integer> secondLargest;
 
-    public static void nextLargerElementHelper(TreeNode<Integer> root, int n) {
+    public static int secondLargestElementHelper(TreeNode<Integer> root) {
         if (root == null) {
-            return;
+            return 0;
         }
-        // if root is less than nextLargest but
-        // greater than x, update nextLargest
-        if (root.data > n) {
-            if (nextLarger == null || nextLarger.data > root.data) {
-                nextLarger = root;
+
+        int ans = root.data;
+        if (root.data > ans) {
+            if (secondLargest == null || secondLargest.data > root.data) {
+                secondLargest = root;
             }
         }
         for(int i = 0; i < root.children.size(); i++) {
-            nextLargerElementHelper(root.children.get(i), n);
+            int childLargest = secondLargestElementHelper(root.children.get(i));
+            if (ans < childLargest){
+                ans = childLargest;
+            }
+
         }
-        return;
+        return secondLargest.data;
     }
 
-   // Function to find next Greater element
+    // Function to find next Greater element
     // of x in tree
-     static int nextLargerElement(TreeNode<Integer> root, int n)
+    static int secondLargestElement(TreeNode<Integer> root)
     {
-        nextLarger = null;
+        secondLargest = null;
         // calling helper function
-         nextLargerElementHelper(root,n);
-         return nextLarger.data;
+        secondLargestElementHelper(root);
+        return secondLargest.data;
     }
 
     public static void main(String[] args) throws QueueEmptyException {
         TreeNode<Integer> root = takeInputLevelWise();
 //        printLevelWise(root);
-        System.out.println(nextLargerElement(root, 6));
+        System.out.println(secondLargestElement(root));
     }
 }
