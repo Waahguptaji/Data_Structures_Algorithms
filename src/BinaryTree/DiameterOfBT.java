@@ -130,7 +130,7 @@ public class DiameterOfBT {
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputLevelWise();
         printTreeLevelWise(root);
-        System.out.println(("height: " + heightDiameter(root).first));
-        System.out.println(("diameter: " + heightDiameter(root).second));
+        System.out.println(("height:  " + heightDiameter(root).first));
+        System.out.println(("diameter:  " + heightDiameter(root).second));
     }
 }
