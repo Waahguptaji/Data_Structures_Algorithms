@@ -120,7 +120,7 @@ public class ConstructTreefromPostandInOrder {
         int leftInS = inS;
         int leftInE = rootInIndex - 1;
         int leftPostS = postS;
-        int leftPostE = leftInE - leftInS;// leftPostE= leftInE - leftInS
+        int leftPostE = leftInE - leftInS;// leftPostE = leftInE - leftInS
         int rightInS = rootInIndex + 1 ;
         int rightInE = inE;
         int rightPostS = leftPostE + 1;
