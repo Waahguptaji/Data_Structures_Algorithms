@@ -104,7 +104,7 @@ public class ConstructTreefromPostandInOrder {
         if (inS > inE) {
             return null;
         }
-        int rootData = post[postS];
+        int rootData = post[postE];
         BinaryTreeNode<Integer> root = new BinaryTreeNode<>(rootData);
         int rootInIndex = -1;
         for (int i = inS; i <= inE ; i++) {
@@ -120,14 +120,15 @@ public class ConstructTreefromPostandInOrder {
         int leftInS = inS;
         int leftInE = rootInIndex - 1;
         int leftPostS = postS;
-        int leftPostE = leftInE - leftInS;// leftPostE = leftInE - leftInS
+        int leftPostE = leftInE - leftInS + leftPostS ;// leftPostE - leftPostS = leftInE - leftInS --> leftPostE = leftInE - leftInS + leftPostS
         int rightInS = rootInIndex + 1 ;
         int rightInE = inE;
         int rightPostS = leftPostE + 1;
-        int rightPostE = postE;
+        int rightPostE = postE - 1;//one less for root
 
-        root.left = buildTreeHelper(in,post,leftInS,leftInE,leftPostS,leftPostE);//We are calling on both left and right
+        //We are calling here right first then left because in this we are moving the root in post order from last to first, so it collapse with the right tree first
         root.right = buildTreeHelper(in,post,rightInS,rightInE,rightPostS,rightPostE);
+        root.left = buildTreeHelper(in,post,leftInS,leftInE,leftPostS,leftPostE);
         return root;
     }
 
@@ -138,8 +139,8 @@ public class ConstructTreefromPostandInOrder {
     }
 
     public static void main(String[] args) {
-        int[] in = {4,2,5,1,3,7};
-        int[] post = {4,5,2,7,3,1};
+        int[] in = {4,2,5,1,6,3,7};
+        int[] post = {4,5,2,6,7,3,1};
         BinaryTreeNode<Integer> root = buildTree(in,post);
         printTreeLevelWise(root);
     }
