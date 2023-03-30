@@ -85,22 +85,17 @@ public class SumOfNodesBT {
         }
     }
 
-    public static int sumOfNodes(BinaryTreeNode<Integer> root){
+    public static int sum(BinaryTreeNode<Integer> root){
         if (root == null) {//Base Case
             return 0;
         }
 
-        int sum = 0;
-        sum = sum + root.left.data + root.right.data;
-
-        sumOfNodes(root.left);
-        sumOfNodes(root.right);
-
-        return sum;
+        int overSum = root.data + sum(root.left) + sum(root.right);
+        return overSum;
     }
 
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputLevelWise();
-        sumOfNodes(root);
+        System.out.println(sum(root));
     }
 }
