@@ -68,12 +68,22 @@ public class LevelOrderTraversal {
         }
         QueueUsingLL<BinaryTreeNode<Integer>> pendingNodes = new QueueUsingLL<>();
         pendingNodes.enqueue(root);
+        pendingNodes.enqueue(null);//here we putting null for printing out new line after the completion of a level
         while (!pendingNodes.isEmpty()){;
             BinaryTreeNode<Integer> front;
             try {
                 front= pendingNodes.dequeue();
             } catch (QueueEmptyException e) {
                 return;
+            }
+            if (front == null) {//agr null aagya toh iska mtlb agr queue empty hai toh break kardo loop wrna null ko add kardo jo ki last mai add ho jaayega apne aap
+                if (pendingNodes.isEmpty()) {
+                    break;
+                }else {
+                    System.out.println();
+                    pendingNodes.enqueue(null);
+                    continue;
+                }
             }
 
             System.out.print(front.data + " ");
@@ -84,7 +94,6 @@ public class LevelOrderTraversal {
                 pendingNodes.enqueue(front.right);
             }
         }
-        return;
     }
 
     public static void main(String[] args) {
