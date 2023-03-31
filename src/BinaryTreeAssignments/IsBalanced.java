@@ -1,6 +1,5 @@
 /*
-Assignment Coding Problem
-Problem Name: is Balanced
+Assignment Coding Problem Name: is Balanced
 Problem Level: MEDIUM
 Problem Description: ####Given a binary tree, check if its balanced i.e. depth of left and right subtrees of every node differ by at max 1. Return true if given binary tree is balanced, false otherwise.
 
@@ -91,12 +90,33 @@ public class IsBalanced {
         }
     }
 
-    public static boolean isBalanced(BinaryTreeNode<Integer> root){
-
-        int leftDepth = 0;
-        int rightDepth = 0;
-return true;
+    public static  int height(BinaryTreeNode<Integer> root){
+        if (root == null) {
+            return 0;
+        }
+            int lh = height(root.left);
+            int rh = height(root.right);
+            return 1 + Math.max(lh,rh);
     }
 
+    public static boolean isBalanced(BinaryTreeNode<Integer> root){
+        // If the tree is empty, we can say it’s balanced
+        if (root == null) {
+            return true;
+        }
+
+        int heightleft= height(root.left);
+        int heightright = height(root.right);
+
+        int depth = Math.abs(heightleft - heightright);
+
+        return depth <= 1 && isBalanced(root.left) && isBalanced(root.right);
+    }
+
+
+    public static void main(String[] args) {
+        BinaryTreeNode<Integer> root = takeInputLevelWise();
+        System.out.println(isBalanced(root));
+    }
 
 }
