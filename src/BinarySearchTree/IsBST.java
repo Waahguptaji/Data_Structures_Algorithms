@@ -2,7 +2,7 @@ package BinarySearchTree;
 
 import java.util.Scanner;
 
-public class IsBST {
+ public class IsBST {//Time Complexity --> O(n*height)
 
     public static BinaryTreeNode<Integer> takeInputLevelWise(){
         Scanner s = new Scanner(System.in);
