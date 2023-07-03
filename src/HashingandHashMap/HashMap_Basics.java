@@ -20,6 +20,7 @@ import java.util.HashMap;
 */
 public class HashMap_Basics {
 
+    //HashMap takes More space complexity but decrease the Time complexity by Half
     public static void main(String[] args) {
 
         // Create an empty hash map by declaring object
