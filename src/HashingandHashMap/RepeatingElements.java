@@ -23,7 +23,7 @@ public class RepeatingElements {
     }
 
 
-    //Method: By Hashing - HashMap
+    //Method: By Hashing - HashMap.
     //Time Complexity: O(N) && Space Complexity : O(N)
     static void nonRepeatHashMap(int[] arr){
         int n = arr.length;

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-//Method: By Hashing - HashSet
+//Method: By Hashing - HashSet.
 //Time Complexity: O(N) && Space Complexity : O(N)
 public class NonRepeatingElements {
     static void nonRepeatHashset(int[] arr){
